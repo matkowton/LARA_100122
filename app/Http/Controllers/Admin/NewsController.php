@@ -12,10 +12,19 @@ class NewsController extends Controller
         dd('jdkdfjkldjkljdkl');
     }
 
-    public function create()
+    public function create(Request $request)
     {
-
+        $title = $request->input('title');
+        $description = $request->input('description');
+        //сохраняем данные в базу
+        return redirect()->route('admin::news::new');
     }
+
+    public function new()
+    {
+        return view('admin.news.create');
+    }
+
 
     public function update()
     {

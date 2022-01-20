@@ -32,12 +32,12 @@ Route::get('/news/card/{id}', [\App\Http\Controllers\NewsController::class, 'car
 
 Route::resource('admin/category', \App\Http\Controllers\Admin\CategoryController::class);
 
-
+/*
 Route::get('/admin/news/', [\App\Http\Controllers\Admin\NewsController::class, 'index'])->name("admin::news::index");
 Route::get('/admin/news/create', [\App\Http\Controllers\Admin\NewsController::class, 'create'])->name("admin::news::create");
 Route::get('/admin/news/update', [\App\Http\Controllers\Admin\NewsController::class, 'update'])->name("admin::news::update");
 Route::get('/admin/news/delete', [\App\Http\Controllers\Admin\NewsController::class, 'delete'])->name("admin::news::delete");
-
+*/
 /**
  * Админка новостей
  */
@@ -49,8 +49,11 @@ Route::group([
     Route::get('', [AdminNewsController::class, 'index'])
         ->name("index");
 
-    Route::get('create', [AdminNewsController::class, 'create'])
+    Route::post('create', [AdminNewsController::class, 'create'])
         ->name("create");
+
+    Route::get('new', [AdminNewsController::class, 'new'])
+        ->name("new");
 
     Route::get('update', [AdminNewsController::class, 'update'])
         ->name("update");

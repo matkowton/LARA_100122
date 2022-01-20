@@ -2,34 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
+
 class NewsController extends Controller
 {
-    private $news = [
-        1 => [
-            'title' => 'news 1'
-        ],
-        2 => [
-            'title' => 'news 2'
-        ]
-    ];
-
     public function index()
     {
-        $response = '';
-        foreach ($this->news as $id => $item) {
-            $url = route('news::card', ['id' => $id]);
-            $response .= "<div>
-                <a href='{$url}'>
-                        {$item['title']}
-                </a>
-                  </div>";
-        }
-        return $response;
+        $news = (new News())->getNews();
+        return view('news.index', ['news' => $news]);
     }
 
     public function card($id)
     {
         $news = $this->news[$id];
-        return $news['title'];
+        //return view('news.card', ['item' => $news);
     }
 }

@@ -16,8 +16,9 @@ class NewsTest extends TestCase
     public function test_example()
     {
         $response = $this->get('/news/card/1');
-
+$this->set
         $response->assertStatus(200)
+
             ->assertSeeText('Заголовок')
             ->assertSeeText('jkljskljkljk');
 

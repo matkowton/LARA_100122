@@ -9,7 +9,7 @@
 <div>
     @forelse($news as $item)
         <div>
-            <a href='{{route('news::card', ['id' => $item->id])}}'> {!! $item->title !!} </a>
+            <a href='{{route('news::card', ['news' => $item->id])}}'> {!! $item->title !!} </a>
         </div>
     @empty
         Новостей нет!!!

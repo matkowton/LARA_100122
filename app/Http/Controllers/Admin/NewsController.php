@@ -22,7 +22,8 @@ class NewsController extends Controller
 
     public function new()
     {
-        return view('admin.news.create');
+
+        return view('admin.news.create', ['model' => $news]);
     }
 
 

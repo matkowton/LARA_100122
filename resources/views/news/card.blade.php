@@ -9,10 +9,10 @@
 <div>
 <div>
     Загол1222:
-    {{$item['title']}}
+    {{$item->title}}
 </div>
     <div>
-        {{$item['description']}}
+        {{$item->description}}
     </div>
 </div>
 @endsection

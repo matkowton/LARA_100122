@@ -26,9 +26,15 @@ Route::get('/test', function () {
 Route::get('/news', [\App\Http\Controllers\NewsController::class, 'index'])
     ->name("news::catalog");
 
-Route::get('/news/card/{id}', [\App\Http\Controllers\NewsController::class, 'card'])
-    ->where('id', '[0-9]+')
+Route::get('/news/card/{news}', [\App\Http\Controllers\NewsController::class, 'card'])
+    ->where('news', '[0-9]+')
     ->name("news::card");
+
+
+Route::get('/category/{category_id}', [\App\Http\Controllers\NewsController::class, 'list'])
+    ->where('category_id', '[0-9]+')
+    ->name("news::list");
+
 
 Route::resource('admin/category', \App\Http\Controllers\Admin\CategoryController::class);
 
@@ -63,7 +69,7 @@ Route::group([
 });
 
 
-
+Route::get('/db', [\App\Http\Controllers\DbController::class, 'index']);
 
 /*
 Route::match(['get', 'post'], '/test', function (){return '<b>hello, world!</b>'; });

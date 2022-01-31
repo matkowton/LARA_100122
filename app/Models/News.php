@@ -12,6 +12,8 @@ class News extends Model
     protected $fillable = [
         'title',
         'content',
+        'source',
+        'publish_date',
         'category_id'
     ];
 
@@ -22,7 +24,25 @@ class News extends Model
             ->get();
     }
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class);
+    }
+
+    public static function rules()
+    {
+        return [
+            'title' => 'required|min:10|max:50|unique:news',
+            'description' => 'max:1000| required',
+            'category_id' => 'required|integer|exists:categories,id',
+            'active' => 'boolean',
+            'publish_date' => 'date'
+        ];
+    }
+
+    public function validate()
+    {
+        $validator = \Validator::make($this->attributes, static::rules());
+        return !$validator->fails();
     }
 }

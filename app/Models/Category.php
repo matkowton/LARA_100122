@@ -12,4 +12,11 @@ class Category extends Model
     public function news() {
         return $this->hasMany(News::class);
     }
+
+    public function getList()
+    {
+        return Category::select(['id', 'name'])
+            ->get()
+            ->pluck('name', 'id');
+    }
 }

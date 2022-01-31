@@ -52,20 +52,22 @@ Route::group([
     'prefix' => '/admin/news',
     'as' => 'admin::news::'
 ], function () {
-    Route::get('', [AdminNewsController::class, 'index'])
-        ->name("index");
+    Route::get('/', [AdminNewsController::class, 'index'] )
+        ->name('index');
 
-    Route::post('create', [AdminNewsController::class, 'create'])
-        ->name("create");
+    Route::get( '/create',[AdminNewsController::class, 'create'])
+        ->name('create');
 
-    Route::get('new', [AdminNewsController::class, 'new'])
-        ->name("new");
+    Route::post( '/save',[AdminNewsController::class, 'save'])
+        ->name('save');
 
-    Route::get('update', [AdminNewsController::class, 'update'])
-        ->name("update");
+    Route::get('/update/{news}', [AdminNewsController::class, 'update'])
+        ->where('news', '[0-9]+')
+        ->name('update');
 
-    Route::get('delete', [AdminNewsController::class, 'delete'])
-        ->name("delete");
+    Route::get('/delete/{id}',[AdminNewsController::class, 'delete'])
+        ->where('id', '[0-9]+')
+        ->name('delete');
 });
 
 

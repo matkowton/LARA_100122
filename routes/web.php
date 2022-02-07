@@ -50,8 +50,9 @@ Route::get('/admin/news/delete', [\App\Http\Controllers\Admin\NewsController::cl
 
 Route::group([
     'prefix' => '/admin/news',
-    'as' => 'admin::news::'
-], function () {
+    'as' => 'admin::news::',
+    'middleware' => ['auth']
+    ], function () {
     Route::get('/', [AdminNewsController::class, 'index'] )
         ->name('index');
 
@@ -73,6 +74,10 @@ Route::group([
 
 Route::get('/db', [\App\Http\Controllers\DbController::class, 'index']);
 
+Route::get('/locale/{lang}', [\App\Http\Controllers\LocaleController::class, 'index'])
+    ->where('lang', '\w+')
+    ->name('locale');
+
 /*
 Route::match(['get', 'post'], '/test', function (){return '<b>hello, world!</b>'; });
 Route::any( '/test', function (){return '<b>hello, world!</b>'; });
@@ -89,3 +94,11 @@ Route::options('', function (){});
 
 
 
+
+Auth::routes(['register' => false]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::match(['get', 'post'], '/admin/profile', ['App\Http\Controllers\Admin\ProfileController', 'update'])
+    ->name('admin:profile')
+    ->middleware('auth');

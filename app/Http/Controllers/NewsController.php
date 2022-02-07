@@ -12,11 +12,6 @@ class NewsController extends Controller
     {
 
         $news = News::with('category')->get();
-
-        foreach ($news as $item) {
-            dump($item->category->name);
-        }
-
         return view('news.index', ['news' => []]);
     }
 

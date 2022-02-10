@@ -25,14 +25,19 @@ class AppServiceProvider extends ServiceProvider
     {
         $menu = [
             [
-                'title' => 'Новости',
-                'alias' => 'news::catalog',
+                'title' => __('menu.main'),
+                'alias' => 'home'
             ],
             [
-                'title' => 'Админка',
+                'title' => __('menu.news'),
+                'alias' => 'news::categories'
+            ],
+            [
+                'title' => __('menu.admin'),
                 'alias' => 'admin::news::index'
             ],
         ];
+
 
         \View::share('menu', $menu);
     }

@@ -2,17 +2,19 @@
 
 @section('title')
     @parent
-    Новости
+    Список новостей
 @endsection
 
 @section('content')
-<div>
     @forelse($news as $item)
+        @php
+            $url = route('news::card', ['news' => $item->id])
+        @endphp
+
         <div>
-            <a href='{{route('news::card', ['news' => $item->id])}}'> {!! $item->title !!} </a>
+            <a href="{{$url}}">{{$item->title}}</a>
         </div>
     @empty
-        Новостей нет!!!
+        Новостей нет
     @endforelse
-</div>
 @endsection

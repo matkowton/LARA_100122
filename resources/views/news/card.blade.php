@@ -1,18 +1,10 @@
 @extends('layouts.main')
 
 @section('title')
-    @parent
-    Новости
+    Страница новости
 @endsection
 
 @section('content')
-<div>
-<div>
-    Загол1222:
-    {{$item->title}}
-</div>
-    <div>
-        {{$item->description}}
-    </div>
-</div>
+<h1>{{$news->title}}</h1>
+<p>{{$news->description}}</p>
 @endsection

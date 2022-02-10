@@ -4,26 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\News;
-use App\Models\NewsOld;
 
 class NewsController extends Controller
 {
     public function index()
     {
-
-        $news = News::with('category')->get();
-        return view('news.index', ['news' => []]);
+        return view('news.index', ['categories' => Category::all()]);
     }
 
-    public function list(int $categoryId)
+    public function list(News $news, $categoryId)
     {
-
-        return view('news.list', ['news' => News::getByCategoryId($categoryId)]);
+        return view('news.list', ['news' => $news->getByCategoryId($categoryId)]);
     }
-
 
     public function card(News $news)
     {
-        return view('news.card', ['item' => $news]);
+        return view(
+            'news.card',
+            [
+                'news' => $news,
+            ]
+        );
     }
 }

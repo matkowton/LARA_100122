@@ -1,18 +1,17 @@
 @extends('layouts.main')
 
 @section('title')
-    @parent
-    Новости
+    Категории
 @endsection
 
 @section('content')
-<div>
-    @forelse($news as $item)
+    @foreach($categories as $category)
+        @php
+            $url = route('news::list', ['categoryId' => $category->id])
+        @endphp
+
         <div>
-            <a href='{{route('news::card', ['id' => $item->id])}}'> {!! $item->title !!} </a>
+            <a href='{{$url}}'>{{$category->name}}</a>
         </div>
-    @empty
-        Новостей нет!!!
-    @endforelse
-</div>
+    @endforeach
 @endsection

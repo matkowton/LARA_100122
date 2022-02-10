@@ -1,4 +1,4 @@
 <?php
 return [
-    'title' => 'Заголовок'
+    'news_title' => 'Заголовок'
 ];

@@ -54,7 +54,7 @@ $adminNewsRoutes = function () {
     Route::group([
         'prefix' => '/news',
         'as' => 'news::',
-        'middleware' => ['auth']
+        //'middleware' => ['auth']
     ], function () {
         Route::get('/', [AdminNewsController::class, 'index'])
             ->name('index');
@@ -82,7 +82,7 @@ Route::group([
     'prefix' => 'admin/',
     'namespace' => '\App\Http\Controllers\Admin',
     'as' => 'admin::',
-    'middleware' => ['auth', 'check_admin']
+  //  'middleware' => ['auth', 'check_admin']
 ], function () use ($adminNewsRoutes) {
     $adminNewsRoutes();
     //Профиль

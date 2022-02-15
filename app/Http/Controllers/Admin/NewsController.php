@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Abilities;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminNewsSaveRequest;
 use App\Models\Category;
@@ -12,6 +13,7 @@ class NewsController extends Controller
 {
     public function index()
     {
+        $allowDelete = \Gate::allows(Abilities::IS_ADMIN);
         $news = News::orderBy('updated_at', 'desc')
             ->paginate(10);
         return view('admin.news.index', ['news' => $news]);
@@ -19,6 +21,7 @@ class NewsController extends Controller
 
     public function create(Category $category)
     {
+
         return view("admin.news.create", [
                 'model' => new News(),
                 'categories' => $category->getList(),
